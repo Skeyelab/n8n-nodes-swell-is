@@ -51,6 +51,7 @@ export const customerGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'limit',
+				value: '={{ $parameter.returnAll === false ? $value : undefined }}',
 			},
 			output: {
 				maxResults: '={{$value}}',
@@ -104,7 +105,7 @@ export const customerGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'where',
-				value: '={{ $parameter.returnAll ? undefined : (() => { const f = $value || {}; const w = {}; if (f.tags) w.tags = f.tags; if (f.group) w.group = f.group; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } return Object.keys(w).length > 0 ? w : undefined; })() }}',
+				value: '={{ $parameter.returnAll === false ? (() => { const f = $value || {}; const w = {}; if (f.tags) w.tags = f.tags; if (f.group) w.group = f.group; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } return Object.keys(w).length > 0 ? w : undefined; })() : undefined }}',
 			},
 		},
 	},

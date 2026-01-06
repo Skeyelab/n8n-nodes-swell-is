@@ -51,6 +51,7 @@ export const orderGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'limit',
+				value: '={{ $parameter.returnAll === false ? $value : undefined }}',
 			},
 			output: {
 				maxResults: '={{$value}}',
@@ -146,7 +147,7 @@ export const orderGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'where',
-				value: '={{ $parameter.returnAll ? undefined : (() => { const f = $value || {}; const w = {}; if (f.account_id) w.account_id = f.account_id; if (f.email) w.account_email = f.email; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } if (f.total_min || f.total_max) { w.grand_total = {}; if (f.total_min) w.grand_total.$gte = f.total_min; if (f.total_max) w.grand_total.$lte = f.total_max; } return Object.keys(w).length > 0 ? w : undefined; })() }}',
+				value: '={{ $parameter.returnAll === false ? (() => { const f = $value || {}; const w = {}; if (f.account_id) w.account_id = f.account_id; if (f.email) w.account_email = f.email; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } if (f.total_min || f.total_max) { w.grand_total = {}; if (f.total_min) w.grand_total.$gte = f.total_min; if (f.total_max) w.grand_total.$lte = f.total_max; } return Object.keys(w).length > 0 ? w : undefined; })() : undefined }}',
 			},
 		},
 	},
