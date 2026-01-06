@@ -76,12 +76,6 @@ export const customerGetAllDescription: INodeProperties[] = [
 				name: 'tags',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'tags',
-					},
-				},
 				description: 'Filter by customer tags (may be comma-separated)',
 			},
 			{
@@ -89,12 +83,6 @@ export const customerGetAllDescription: INodeProperties[] = [
 				name: 'created_from',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'created_from',
-					},
-				},
 				description: 'Filter customers created after this date (ISO 8601 or timestamp)',
 			},
 			{
@@ -102,12 +90,6 @@ export const customerGetAllDescription: INodeProperties[] = [
 				name: 'created_to',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'created_to',
-					},
-				},
 				description: 'Filter customers created before this date (ISO 8601 or timestamp)',
 			},
 			{
@@ -115,15 +97,16 @@ export const customerGetAllDescription: INodeProperties[] = [
 				name: 'group',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'group',
-					},
-				},
 				description: 'Filter by customer group',
 			},
 		],
+		routing: {
+			send: {
+				type: 'query',
+				property: 'where',
+				value: '={{ (() => { const f = $value || {}; const w = {}; if (f.tags) w.tags = f.tags; if (f.group) w.group = f.group; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } return Object.keys(w).length > 0 ? w : undefined; })() }}',
+			},
+		},
 	},
 ];
 

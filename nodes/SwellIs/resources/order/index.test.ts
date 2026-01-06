@@ -63,14 +63,19 @@ describe('Order Resource', () => {
 			});
 		});
 
+		it('should have routing configured on filters collection to send as where parameter', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection?.routing?.send?.type).toBe('query');
+			expect(filtersCollection?.routing?.send?.property).toBe('where');
+			expect(filtersCollection?.routing?.send?.value).toBeDefined();
+		});
+
 		it('should have account_id filter option in filters collection', () => {
 			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
 			const accountIdFilter = filtersCollection?.options?.find((opt) => opt.name === 'account_id');
 			expect(accountIdFilter).toBeDefined();
 			expect(accountIdFilter?.type).toBe('string');
 			expect(accountIdFilter?.displayName).toBe('Account ID');
-			expect(accountIdFilter?.routing?.send?.type).toBe('query');
-			expect(accountIdFilter?.routing?.send?.property).toBe('account_id');
 		});
 
 		it('should have email filter option in filters collection', () => {
@@ -79,8 +84,6 @@ describe('Order Resource', () => {
 			expect(emailFilter).toBeDefined();
 			expect(emailFilter?.type).toBe('string');
 			expect(emailFilter?.displayName).toBe('Email');
-			expect(emailFilter?.routing?.send?.type).toBe('query');
-			expect(emailFilter?.routing?.send?.property).toBe('email');
 		});
 
 		it('should have created_from filter option in filters collection', () => {
@@ -89,8 +92,6 @@ describe('Order Resource', () => {
 			expect(createdFromFilter).toBeDefined();
 			expect(createdFromFilter?.type).toBe('string');
 			expect(createdFromFilter?.displayName).toBe('Created From');
-			expect(createdFromFilter?.routing?.send?.type).toBe('query');
-			expect(createdFromFilter?.routing?.send?.property).toBe('created_from');
 		});
 
 		it('should have created_to filter option in filters collection', () => {
@@ -99,8 +100,6 @@ describe('Order Resource', () => {
 			expect(createdToFilter).toBeDefined();
 			expect(createdToFilter?.type).toBe('string');
 			expect(createdToFilter?.displayName).toBe('Created To');
-			expect(createdToFilter?.routing?.send?.type).toBe('query');
-			expect(createdToFilter?.routing?.send?.property).toBe('created_to');
 		});
 
 		it('should have total_min filter option in filters collection', () => {
@@ -109,8 +108,6 @@ describe('Order Resource', () => {
 			expect(totalMinFilter).toBeDefined();
 			expect(totalMinFilter?.type).toBe('number');
 			expect(totalMinFilter?.displayName).toBe('Total Min');
-			expect(totalMinFilter?.routing?.send?.type).toBe('query');
-			expect(totalMinFilter?.routing?.send?.property).toBe('total_min');
 		});
 
 		it('should have total_max filter option in filters collection', () => {
@@ -119,8 +116,6 @@ describe('Order Resource', () => {
 			expect(totalMaxFilter).toBeDefined();
 			expect(totalMaxFilter?.type).toBe('number');
 			expect(totalMaxFilter?.displayName).toBe('Total Max');
-			expect(totalMaxFilter?.routing?.send?.type).toBe('query');
-			expect(totalMaxFilter?.routing?.send?.property).toBe('total_max');
 		});
 	});
 });

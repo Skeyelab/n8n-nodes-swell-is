@@ -99,12 +99,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 				name: 'account_id',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'account_id',
-					},
-				},
 				description: 'Filter orders by customer/account ID',
 			},
 			{
@@ -112,12 +106,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 				name: 'created_from',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'created_from',
-					},
-				},
 				description: 'Filter orders created after this date (ISO 8601 or timestamp)',
 			},
 			{
@@ -125,12 +113,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 				name: 'created_to',
 				type: 'string',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'created_to',
-					},
-				},
 				description: 'Filter orders created before this date (ISO 8601 or timestamp)',
 			},
 			{
@@ -139,12 +121,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 				type: 'string',
 				placeholder: 'name@email.com',
 				default: '',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'email',
-					},
-				},
 				description: 'Filter orders by customer email',
 			},
 			{
@@ -152,12 +128,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 				name: 'total_max',
 				type: 'number',
 				default: undefined,
-				routing: {
-					send: {
-						type: 'query',
-						property: 'total_max',
-					},
-				},
 				description: 'Filter by maximum order total',
 			},
 			{
@@ -165,15 +135,16 @@ export const orderGetAllDescription: INodeProperties[] = [
 				name: 'total_min',
 				type: 'number',
 				default: undefined,
-				routing: {
-					send: {
-						type: 'query',
-						property: 'total_min',
-					},
-				},
 				description: 'Filter by minimum order total',
 			},
 		],
+		routing: {
+			send: {
+				type: 'query',
+				property: 'where',
+				value: '={{ (() => { const f = $value || {}; const w = {}; if (f.account_id) w.account_id = f.account_id; if (f.email) w.account_email = f.email; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } if (f.total_min || f.total_max) { w.grand_total = {}; if (f.total_min) w.grand_total.$gte = f.total_min; if (f.total_max) w.grand_total.$lte = f.total_max; } return Object.keys(w).length > 0 ? w : undefined; })() }}',
+			},
+		},
 	},
 ];
 
