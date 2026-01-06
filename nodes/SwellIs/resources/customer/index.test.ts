@@ -44,8 +44,25 @@ describe('Customer Resource', () => {
 			expect(emailFilter).toBeUndefined();
 		});
 
-		it('should have tags filter', () => {
-			const tagsFilter = customerDescription.find((p) => p.name === 'tags');
+		it('should have filters collection', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection).toBeDefined();
+			expect(filtersCollection?.type).toBe('collection');
+			expect(filtersCollection?.displayName).toBe('Filters');
+		});
+
+		it('should show filters collection only when returnAll is false', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection?.displayOptions?.show).toEqual({
+				operation: ['getAll'],
+				resource: ['customer'],
+				returnAll: [false],
+			});
+		});
+
+		it('should have tags filter option in filters collection', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			const tagsFilter = filtersCollection?.options?.find((opt) => opt.name === 'tags');
 			expect(tagsFilter).toBeDefined();
 			expect(tagsFilter?.type).toBe('string');
 			expect(tagsFilter?.displayName).toBe('Tags');
@@ -53,8 +70,9 @@ describe('Customer Resource', () => {
 			expect(tagsFilter?.routing?.send?.property).toBe('tags');
 		});
 
-		it('should have created_from filter', () => {
-			const createdFromFilter = customerDescription.find((p) => p.name === 'created_from');
+		it('should have created_from filter option in filters collection', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			const createdFromFilter = filtersCollection?.options?.find((opt) => opt.name === 'created_from');
 			expect(createdFromFilter).toBeDefined();
 			expect(createdFromFilter?.type).toBe('string');
 			expect(createdFromFilter?.displayName).toBe('Created From');
@@ -62,8 +80,9 @@ describe('Customer Resource', () => {
 			expect(createdFromFilter?.routing?.send?.property).toBe('created_from');
 		});
 
-		it('should have created_to filter', () => {
-			const createdToFilter = customerDescription.find((p) => p.name === 'created_to');
+		it('should have created_to filter option in filters collection', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			const createdToFilter = filtersCollection?.options?.find((opt) => opt.name === 'created_to');
 			expect(createdToFilter).toBeDefined();
 			expect(createdToFilter?.type).toBe('string');
 			expect(createdToFilter?.displayName).toBe('Created To');
@@ -71,21 +90,14 @@ describe('Customer Resource', () => {
 			expect(createdToFilter?.routing?.send?.property).toBe('created_to');
 		});
 
-		it('should have group filter', () => {
-			const groupFilter = customerDescription.find((p) => p.name === 'group');
+		it('should have group filter option in filters collection', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			const groupFilter = filtersCollection?.options?.find((opt) => opt.name === 'group');
 			expect(groupFilter).toBeDefined();
 			expect(groupFilter?.type).toBe('string');
 			expect(groupFilter?.displayName).toBe('Group');
 			expect(groupFilter?.routing?.send?.type).toBe('query');
 			expect(groupFilter?.routing?.send?.property).toBe('group');
-		});
-
-		it('should show filters only for getAll operation', () => {
-			const tagsFilter = customerDescription.find((p) => p.name === 'tags');
-			expect(tagsFilter?.displayOptions?.show).toEqual({
-				operation: ['getAll'],
-				resource: ['customer'],
-			});
 		});
 	});
 

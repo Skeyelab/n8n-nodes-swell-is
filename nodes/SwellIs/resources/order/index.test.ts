@@ -47,8 +47,25 @@ describe('Order Resource', () => {
 	});
 
 	describe('GetAll Filters', () => {
-		it('should have account_id filter', () => {
-			const accountIdFilter = orderDescription.find((p) => p.name === 'account_id');
+		it('should have filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection).toBeDefined();
+			expect(filtersCollection?.type).toBe('collection');
+			expect(filtersCollection?.displayName).toBe('Filters');
+		});
+
+		it('should show filters collection only when returnAll is false', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection?.displayOptions?.show).toEqual({
+				operation: ['getAll'],
+				resource: ['order'],
+				returnAll: [false],
+			});
+		});
+
+		it('should have account_id filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const accountIdFilter = filtersCollection?.options?.find((opt) => opt.name === 'account_id');
 			expect(accountIdFilter).toBeDefined();
 			expect(accountIdFilter?.type).toBe('string');
 			expect(accountIdFilter?.displayName).toBe('Account ID');
@@ -56,8 +73,9 @@ describe('Order Resource', () => {
 			expect(accountIdFilter?.routing?.send?.property).toBe('account_id');
 		});
 
-		it('should have email filter', () => {
-			const emailFilter = orderDescription.find((p) => p.name === 'email');
+		it('should have email filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const emailFilter = filtersCollection?.options?.find((opt) => opt.name === 'email');
 			expect(emailFilter).toBeDefined();
 			expect(emailFilter?.type).toBe('string');
 			expect(emailFilter?.displayName).toBe('Email');
@@ -65,8 +83,9 @@ describe('Order Resource', () => {
 			expect(emailFilter?.routing?.send?.property).toBe('email');
 		});
 
-		it('should have created_from filter', () => {
-			const createdFromFilter = orderDescription.find((p) => p.name === 'created_from');
+		it('should have created_from filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const createdFromFilter = filtersCollection?.options?.find((opt) => opt.name === 'created_from');
 			expect(createdFromFilter).toBeDefined();
 			expect(createdFromFilter?.type).toBe('string');
 			expect(createdFromFilter?.displayName).toBe('Created From');
@@ -74,8 +93,9 @@ describe('Order Resource', () => {
 			expect(createdFromFilter?.routing?.send?.property).toBe('created_from');
 		});
 
-		it('should have created_to filter', () => {
-			const createdToFilter = orderDescription.find((p) => p.name === 'created_to');
+		it('should have created_to filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const createdToFilter = filtersCollection?.options?.find((opt) => opt.name === 'created_to');
 			expect(createdToFilter).toBeDefined();
 			expect(createdToFilter?.type).toBe('string');
 			expect(createdToFilter?.displayName).toBe('Created To');
@@ -83,8 +103,9 @@ describe('Order Resource', () => {
 			expect(createdToFilter?.routing?.send?.property).toBe('created_to');
 		});
 
-		it('should have total_min filter', () => {
-			const totalMinFilter = orderDescription.find((p) => p.name === 'total_min');
+		it('should have total_min filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const totalMinFilter = filtersCollection?.options?.find((opt) => opt.name === 'total_min');
 			expect(totalMinFilter).toBeDefined();
 			expect(totalMinFilter?.type).toBe('number');
 			expect(totalMinFilter?.displayName).toBe('Total Min');
@@ -92,21 +113,14 @@ describe('Order Resource', () => {
 			expect(totalMinFilter?.routing?.send?.property).toBe('total_min');
 		});
 
-		it('should have total_max filter', () => {
-			const totalMaxFilter = orderDescription.find((p) => p.name === 'total_max');
+		it('should have total_max filter option in filters collection', () => {
+			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
+			const totalMaxFilter = filtersCollection?.options?.find((opt) => opt.name === 'total_max');
 			expect(totalMaxFilter).toBeDefined();
 			expect(totalMaxFilter?.type).toBe('number');
 			expect(totalMaxFilter?.displayName).toBe('Total Max');
 			expect(totalMaxFilter?.routing?.send?.type).toBe('query');
 			expect(totalMaxFilter?.routing?.send?.property).toBe('total_max');
-		});
-
-		it('should show filters only for getAll operation', () => {
-			const accountIdFilter = orderDescription.find((p) => p.name === 'account_id');
-			expect(accountIdFilter?.displayOptions?.show).toEqual({
-				operation: ['getAll'],
-				resource: ['order'],
-			});
 		});
 	});
 });

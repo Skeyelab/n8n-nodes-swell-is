@@ -82,101 +82,98 @@ export const orderGetAllDescription: INodeProperties[] = [
 		description: 'Filter by order status',
 	},
 	{
-		displayName: 'Account ID',
-		name: 'account_id',
-		type: 'string',
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
 		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'account_id',
+			show: {
+				...showOnlyForOrderGetAll,
+				returnAll: [false],
 			},
 		},
-		description: 'Filter orders by customer/account ID',
-	},
-	{
-		displayName: 'Email',
-		name: 'email',
-		type: 'string',
-		placeholder: 'name@email.com',
-		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'email',
+		default: {},
+		options: [
+			{
+				displayName: 'Account ID',
+				name: 'account_id',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'account_id',
+					},
+				},
+				description: 'Filter orders by customer/account ID',
 			},
-		},
-		description: 'Filter orders by customer email',
-	},
-	{
-		displayName: 'Created From',
-		name: 'created_from',
-		type: 'string',
-		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'created_from',
+			{
+				displayName: 'Created From',
+				name: 'created_from',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'created_from',
+					},
+				},
+				description: 'Filter orders created after this date (ISO 8601 or timestamp)',
 			},
-		},
-		description: 'Filter orders created after this date (ISO 8601 or timestamp)',
-	},
-	{
-		displayName: 'Created To',
-		name: 'created_to',
-		type: 'string',
-		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'created_to',
+			{
+				displayName: 'Created To',
+				name: 'created_to',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'created_to',
+					},
+				},
+				description: 'Filter orders created before this date (ISO 8601 or timestamp)',
 			},
-		},
-		description: 'Filter orders created before this date (ISO 8601 or timestamp)',
-	},
-	{
-		displayName: 'Total Min',
-		name: 'total_min',
-		type: 'number',
-		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: undefined,
-		routing: {
-			send: {
-				type: 'query',
-				property: 'total_min',
+			{
+				displayName: 'Email',
+				name: 'email',
+				type: 'string',
+				placeholder: 'name@email.com',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'email',
+					},
+				},
+				description: 'Filter orders by customer email',
 			},
-		},
-		description: 'Filter by minimum order total',
-	},
-	{
-		displayName: 'Total Max',
-		name: 'total_max',
-		type: 'number',
-		displayOptions: {
-			show: showOnlyForOrderGetAll,
-		},
-		default: undefined,
-		routing: {
-			send: {
-				type: 'query',
-				property: 'total_max',
+			{
+				displayName: 'Total Max',
+				name: 'total_max',
+				type: 'number',
+				default: undefined,
+				routing: {
+					send: {
+						type: 'query',
+						property: 'total_max',
+					},
+				},
+				description: 'Filter by maximum order total',
 			},
-		},
-		description: 'Filter by maximum order total',
+			{
+				displayName: 'Total Min',
+				name: 'total_min',
+				type: 'number',
+				default: undefined,
+				routing: {
+					send: {
+						type: 'query',
+						property: 'total_min',
+					},
+				},
+				description: 'Filter by minimum order total',
+			},
+		],
 	},
 ];
 

@@ -59,68 +59,71 @@ export const customerGetAllDescription: INodeProperties[] = [
 		description: 'Max number of results to return',
 	},
 	{
-		displayName: 'Tags',
-		name: 'tags',
-		type: 'string',
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
 		displayOptions: {
-			show: showOnlyForCustomerGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'tags',
+			show: {
+				...showOnlyForCustomerGetAll,
+				returnAll: [false],
 			},
 		},
-		description: 'Filter by customer tags (may be comma-separated)',
-	},
-	{
-		displayName: 'Created From',
-		name: 'created_from',
-		type: 'string',
-		displayOptions: {
-			show: showOnlyForCustomerGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'created_from',
+		default: {},
+		options: [
+			{
+				displayName: 'Tags',
+				name: 'tags',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'tags',
+					},
+				},
+				description: 'Filter by customer tags (may be comma-separated)',
 			},
-		},
-		description: 'Filter customers created after this date (ISO 8601 or timestamp)',
-	},
-	{
-		displayName: 'Created To',
-		name: 'created_to',
-		type: 'string',
-		displayOptions: {
-			show: showOnlyForCustomerGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'created_to',
+			{
+				displayName: 'Created From',
+				name: 'created_from',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'created_from',
+					},
+				},
+				description: 'Filter customers created after this date (ISO 8601 or timestamp)',
 			},
-		},
-		description: 'Filter customers created before this date (ISO 8601 or timestamp)',
-	},
-	{
-		displayName: 'Group',
-		name: 'group',
-		type: 'string',
-		displayOptions: {
-			show: showOnlyForCustomerGetAll,
-		},
-		default: '',
-		routing: {
-			send: {
-				type: 'query',
-				property: 'group',
+			{
+				displayName: 'Created To',
+				name: 'created_to',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'created_to',
+					},
+				},
+				description: 'Filter customers created before this date (ISO 8601 or timestamp)',
 			},
-		},
-		description: 'Filter by customer group',
+			{
+				displayName: 'Group',
+				name: 'group',
+				type: 'string',
+				default: '',
+				routing: {
+					send: {
+						type: 'query',
+						property: 'group',
+					},
+				},
+				description: 'Filter by customer group',
+			},
+		],
 	},
 ];
 
