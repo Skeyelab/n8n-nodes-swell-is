@@ -4,8 +4,13 @@
   "description": "n8n community node for Swell Backend API integration",
   "license": "MIT",
   "homepage": "",
-  "keywords": ["n8n-community-node-package"],
-  "author": { "name": "Eric Dahl", "email": "eric@skeyelab.com" },
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "author": {
+    "name": "Eric Dahl",
+    "email": "eric@skeyelab.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/edahl/n8n-nodes-swell-is.git"
@@ -16,22 +21,38 @@
     "dev": "n8n-node dev",
     "lint": "n8n-node lint",
     "lint:fix": "n8n-node lint --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/SwellIsApi.credentials.js"],
-    "nodes": ["dist/nodes/SwellIs/SwellIs.node.js"]
+    "credentials": [
+      "dist/credentials/SwellIsApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/SwellIs/SwellIs.node.js"
+    ]
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "eslint": "9.32.0",
+    "n8n-workflow": "^2.3.0",
     "prettier": "3.6.2",
     "release-it": "^19.0.4",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "vitest": "^4.0.16"
   },
-  "peerDependencies": { "n8n-workflow": "*" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
 }
