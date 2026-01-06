@@ -24,8 +24,9 @@ export const orderGetAllDescription: INodeProperties[] = [
 					type: 'offset',
 					properties: {
 						limitParameter: 'limit',
-						offsetParameter: 'offset',
+						offsetParameter: 'page',
 						pageSize: 100,
+						rootProperty: 'results',
 						type: 'query',
 					},
 				},
