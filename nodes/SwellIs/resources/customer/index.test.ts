@@ -60,14 +60,19 @@ describe('Customer Resource', () => {
 			});
 		});
 
+		it('should have routing configured on filters collection to send as where parameter', () => {
+			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
+			expect(filtersCollection?.routing?.send?.type).toBe('query');
+			expect(filtersCollection?.routing?.send?.property).toBe('where');
+			expect(filtersCollection?.routing?.send?.value).toBeDefined();
+		});
+
 		it('should have tags filter option in filters collection', () => {
 			const filtersCollection = customerDescription.find((p) => p.name === 'filters');
 			const tagsFilter = filtersCollection?.options?.find((opt) => opt.name === 'tags');
 			expect(tagsFilter).toBeDefined();
 			expect(tagsFilter?.type).toBe('string');
 			expect(tagsFilter?.displayName).toBe('Tags');
-			expect(tagsFilter?.routing?.send?.type).toBe('query');
-			expect(tagsFilter?.routing?.send?.property).toBe('tags');
 		});
 
 		it('should have created_from filter option in filters collection', () => {
@@ -76,8 +81,6 @@ describe('Customer Resource', () => {
 			expect(createdFromFilter).toBeDefined();
 			expect(createdFromFilter?.type).toBe('string');
 			expect(createdFromFilter?.displayName).toBe('Created From');
-			expect(createdFromFilter?.routing?.send?.type).toBe('query');
-			expect(createdFromFilter?.routing?.send?.property).toBe('created_from');
 		});
 
 		it('should have created_to filter option in filters collection', () => {
@@ -86,8 +89,6 @@ describe('Customer Resource', () => {
 			expect(createdToFilter).toBeDefined();
 			expect(createdToFilter?.type).toBe('string');
 			expect(createdToFilter?.displayName).toBe('Created To');
-			expect(createdToFilter?.routing?.send?.type).toBe('query');
-			expect(createdToFilter?.routing?.send?.property).toBe('created_to');
 		});
 
 		it('should have group filter option in filters collection', () => {
@@ -96,8 +97,6 @@ describe('Customer Resource', () => {
 			expect(groupFilter).toBeDefined();
 			expect(groupFilter?.type).toBe('string');
 			expect(groupFilter?.displayName).toBe('Group');
-			expect(groupFilter?.routing?.send?.type).toBe('query');
-			expect(groupFilter?.routing?.send?.property).toBe('group');
 		});
 	});
 
