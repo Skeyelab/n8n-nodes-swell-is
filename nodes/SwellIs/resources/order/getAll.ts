@@ -81,5 +81,102 @@ export const orderGetAllDescription: INodeProperties[] = [
 		},
 		description: 'Filter by order status',
 	},
+	{
+		displayName: 'Account ID',
+		name: 'account_id',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'account_id',
+			},
+		},
+		description: 'Filter orders by customer/account ID',
+	},
+	{
+		displayName: 'Email',
+		name: 'email',
+		type: 'string',
+		placeholder: 'name@email.com',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'email',
+			},
+		},
+		description: 'Filter orders by customer email',
+	},
+	{
+		displayName: 'Created From',
+		name: 'created_from',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'created_from',
+			},
+		},
+		description: 'Filter orders created after this date (ISO 8601 or timestamp)',
+	},
+	{
+		displayName: 'Created To',
+		name: 'created_to',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'created_to',
+			},
+		},
+		description: 'Filter orders created before this date (ISO 8601 or timestamp)',
+	},
+	{
+		displayName: 'Total Min',
+		name: 'total_min',
+		type: 'number',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: undefined,
+		routing: {
+			send: {
+				type: 'query',
+				property: 'total_min',
+			},
+		},
+		description: 'Filter by minimum order total',
+	},
+	{
+		displayName: 'Total Max',
+		name: 'total_max',
+		type: 'number',
+		displayOptions: {
+			show: showOnlyForOrderGetAll,
+		},
+		default: undefined,
+		routing: {
+			send: {
+				type: 'query',
+				property: 'total_max',
+			},
+		},
+		description: 'Filter by maximum order total',
+	},
 ];
 
