@@ -70,7 +70,7 @@ export const customerGetAllDescription: INodeProperties[] = [
 				returnAll: [false],
 			},
 		},
-		default: {},
+		default: undefined,
 		options: [
 			{
 				displayName: 'Tags',
@@ -105,7 +105,7 @@ export const customerGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'where',
-				value: '={{ $parameter.returnAll === false ? (() => { const f = $value || {}; const w = {}; if (f.tags) w.tags = f.tags; if (f.group) w.group = f.group; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } return Object.keys(w).length > 0 ? w : undefined; })() : undefined }}',
+				value: '={{ $parameter.returnAll === true ? undefined : (() => { if ($parameter.returnAll === true) return undefined; const f = $value || {}; const w = {}; if (f.tags && f.tags.trim()) w.tags = f.tags; if (f.group && f.group.trim()) w.group = f.group; if (f.created_from || f.created_to) { w.date_created = {}; if (f.created_from) w.date_created.$gte = f.created_from; if (f.created_to) w.date_created.$lte = f.created_to; } return Object.keys(w).length > 0 ? w : undefined; })() }}',
 			},
 		},
 	},
