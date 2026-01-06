@@ -70,7 +70,7 @@ export const customerGetAllDescription: INodeProperties[] = [
 				returnAll: [false],
 			},
 		},
-		default: undefined,
+		default: {},
 		options: [
 			{
 				displayName: 'Tags',
