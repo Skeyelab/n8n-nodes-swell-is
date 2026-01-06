@@ -108,6 +108,32 @@ The credentials use Basic Authentication with your Store ID as the username and 
 - [Swell Node.js Library](https://github.com/swellstores/swell-node)
 - [Swell Developer Portal](https://developers.swell.is/)
 
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) for testing.
+
+### Running Tests
+
+```bash
+# Run tests once
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+
+# Run tests with UI
+yarn test:ui
+
+# Run tests with coverage
+yarn test:coverage
+```
+
+### Test Structure
+
+Tests are located alongside the source files:
+- `credentials/**/*.test.ts` - Credential tests
+- `nodes/**/*.test.ts` - Node and resource tests
+
 ## Version history
 
 ### 0.1.0
@@ -115,3 +141,4 @@ The credentials use Basic Authentication with your Store ID as the username and 
 - Support for Products, Orders, Customers, and Categories
 - Basic CRUD operations for all resources
 - Basic authentication with Store ID and Secret Key
+- Vitest testing setup

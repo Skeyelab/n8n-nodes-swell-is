@@ -3,6 +3,7 @@ import type {
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 
 export class SwellIsApi implements ICredentialType {
@@ -10,10 +11,7 @@ export class SwellIsApi implements ICredentialType {
 
 	displayName = 'Swell API';
 
-	icon = {
-		light: 'file:swellIs.svg',
-		dark: 'file:swellIs.dark.svg',
-	};
+	icon: Icon = 'file:swellIs.svg' as Icon;
 
 	// Link to your community node's README
 	documentationUrl = 'https://github.com/swellstores/swell-node#readme';
