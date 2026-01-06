@@ -11,7 +11,10 @@ export class SwellIsApi implements ICredentialType {
 
 	displayName = 'Swell API';
 
-	icon: Icon = 'file:swellIs.svg' as Icon;
+	icon: Icon = {
+		light: 'file:swellIs.svg',
+		dark: 'file:swellIs.dark.svg',
+	};
 
 	// Link to your community node's README
 	documentationUrl = 'https://github.com/swellstores/swell-node#readme';
