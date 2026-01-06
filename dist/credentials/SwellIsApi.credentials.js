@@ -5,6 +5,7 @@ class SwellIsApi {
     constructor() {
         this.name = 'swellIsApi';
         this.displayName = 'Swell API';
+        this.icon = 'file:swellIs.svg';
         this.documentationUrl = 'https://github.com/swellstores/swell-node#readme';
         this.properties = [
             {
