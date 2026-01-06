@@ -34,11 +34,11 @@ export const customerDescription: INodeProperties[] = [
 				name: 'Get',
 				value: 'get',
 				action: 'Get a customer',
-				description: 'Get a customer by ID',
+				description: 'Get a customer by ID or email',
 				routing: {
 					request: {
 						method: 'GET',
-						url: '=/accounts/{{$parameter.customerId}}',
+						url: '={{$parameter.lookupType === "id" ? `/accounts/${$parameter.customerId}` : "/accounts"}}',
 					},
 				},
 			},

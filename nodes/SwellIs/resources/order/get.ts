@@ -15,7 +15,8 @@ export const orderGetDescription: INodeProperties[] = [
 		},
 		required: true,
 		default: '',
-		description: 'The ID of the order to retrieve',
+		description:
+			'The ID of the order to retrieve. The response includes an `items` array with order line items containing product information. See Swell API documentation for complete response structure.',
 	},
 ];
 

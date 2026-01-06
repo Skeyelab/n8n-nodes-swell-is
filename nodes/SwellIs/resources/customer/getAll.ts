@@ -59,10 +59,9 @@ export const customerGetAllDescription: INodeProperties[] = [
 		description: 'Max number of results to return',
 	},
 	{
-		displayName: 'Email',
-		name: 'email',
+		displayName: 'Tags',
+		name: 'tags',
 		type: 'string',
-		placeholder: 'name@email.com',
 		displayOptions: {
 			show: showOnlyForCustomerGetAll,
 		},
@@ -70,10 +69,58 @@ export const customerGetAllDescription: INodeProperties[] = [
 		routing: {
 			send: {
 				type: 'query',
-				property: 'email',
+				property: 'tags',
 			},
 		},
-		description: 'Filter by customer email',
+		description: 'Filter by customer tags (may be comma-separated)',
+	},
+	{
+		displayName: 'Created From',
+		name: 'created_from',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForCustomerGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'created_from',
+			},
+		},
+		description: 'Filter customers created after this date (ISO 8601 or timestamp)',
+	},
+	{
+		displayName: 'Created To',
+		name: 'created_to',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForCustomerGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'created_to',
+			},
+		},
+		description: 'Filter customers created before this date (ISO 8601 or timestamp)',
+	},
+	{
+		displayName: 'Group',
+		name: 'group',
+		type: 'string',
+		displayOptions: {
+			show: showOnlyForCustomerGetAll,
+		},
+		default: '',
+		routing: {
+			send: {
+				type: 'query',
+				property: 'group',
+			},
+		},
+		description: 'Filter by customer group',
 	},
 ];
 
