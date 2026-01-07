@@ -3,6 +3,7 @@ import { productDescription } from './resources/product';
 import { orderDescription } from './resources/order';
 import { customerDescription } from './resources/customer';
 import { categoryDescription } from './resources/category';
+import { userDescription } from './resources/user';
 
 export class SwellIs implements INodeType {
 	description: INodeTypeDescription = {
@@ -35,20 +36,24 @@ export class SwellIs implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Product',
-						value: 'product',
-					},
-					{
-						name: 'Order',
-						value: 'order',
+						name: 'Category',
+						value: 'category',
 					},
 					{
 						name: 'Customer',
 						value: 'customer',
 					},
 					{
-						name: 'Category',
-						value: 'category',
+						name: 'Order',
+						value: 'order',
+					},
+					{
+						name: 'Product',
+						value: 'product',
+					},
+					{
+						name: 'User',
+						value: 'user',
 					},
 				],
 				default: 'product',
@@ -57,6 +62,7 @@ export class SwellIs implements INodeType {
 			...orderDescription,
 			...customerDescription,
 			...categoryDescription,
+			...userDescription,
 		],
 	};
 }

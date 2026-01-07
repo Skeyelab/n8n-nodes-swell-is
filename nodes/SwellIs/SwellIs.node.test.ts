@@ -47,13 +47,14 @@ describe('SwellIs Node', () => {
 		expect(resourceProperty).toBeDefined();
 		expect(resourceProperty?.type).toBe('options');
 		expect(resourceProperty?.options).toBeDefined();
-		expect(resourceProperty?.options?.length).toBe(4);
+		expect(resourceProperty?.options?.length).toBe(5);
 
 		const resourceValues = resourceProperty?.options?.map((opt) => opt.value) || [];
 		expect(resourceValues).toContain('product');
 		expect(resourceValues).toContain('order');
 		expect(resourceValues).toContain('customer');
 		expect(resourceValues).toContain('category');
+		expect(resourceValues).toContain('user');
 	});
 
 	it('should have default resource', () => {
