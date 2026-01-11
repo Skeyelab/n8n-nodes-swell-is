@@ -58,7 +58,7 @@ export const customerGetDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'where',
-				value: '={{ $parameter.operation === "get" && $parameter.lookupType === "email" && $value && $value.trim() ? JSON.stringify({ email: $value.trim() }) : undefined }}',
+				value: '={{ $parameter.operation === "get" && $parameter.lookupType === "email" && $value && $value.trim() ? { email: $value.trim() } : undefined }}',
 			},
 		},
 	},
