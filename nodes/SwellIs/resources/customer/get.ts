@@ -57,8 +57,8 @@ export const customerGetDescription: INodeProperties[] = [
 		routing: {
 			send: {
 				type: 'query',
-				property: 'email',
-				value: '={{ $parameter.operation === "get" && $parameter.lookupType === "email" ? $value : undefined }}',
+				property: 'where',
+				value: '={{ $parameter.operation === "get" && $parameter.lookupType === "email" ? { email: $value } : undefined }}',
 			},
 		},
 	},
