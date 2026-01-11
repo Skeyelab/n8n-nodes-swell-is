@@ -150,12 +150,13 @@ describe('Customer Resource', () => {
 			expect(getOption?.routing?.request?.url).toContain('accounts');
 		});
 
-		it('should have routing configured for email lookup', () => {
+		it('should have routing configured for email lookup using where parameter', () => {
 			const emailProperty = customerDescription.find(
 				(p) => p.name === 'email' && p.displayOptions?.show?.operation?.includes('get'),
 			);
 			expect(emailProperty?.routing?.send?.type).toBe('query');
-			expect(emailProperty?.routing?.send?.property).toBe('email');
+			// Swell API requires email filter via where parameter, not as direct query param
+			expect(emailProperty?.routing?.send?.property).toBe('where');
 		});
 	});
 });
