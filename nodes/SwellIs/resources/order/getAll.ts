@@ -65,27 +65,25 @@ export const orderGetAllDescription: INodeProperties[] = [
 		name: 'status',
 		type: 'options',
 		displayOptions: {
-			show: {
-				...showOnlyForOrderGetAll,
-				returnAll: [false],
-			},
+			show: showOnlyForOrderGetAll,
 		},
 		options: [
+			{ name: 'All', value: '' },
 			{ name: 'Abandoned', value: 'abandoned' },
 			{ name: 'Canceled', value: 'canceled' },
 			{ name: 'Completed', value: 'completed' },
 			{ name: 'Pending', value: 'pending' },
 			{ name: 'Processing', value: 'processing' },
 		],
-		default: 'abandoned',
+		default: '',
 		routing: {
 			send: {
 				type: 'query',
 				property: 'status',
-				value: '={{ $parameter.returnAll ? undefined : $value }}',
+				value: '={{ $value && $value.trim() ? $value : undefined }}',
 			},
 		},
-		description: 'Filter by order status',
+		description: 'Filter by order status (optional)',
 	},
 	{
 		displayName: 'Filters',
