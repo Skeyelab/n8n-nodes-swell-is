@@ -68,8 +68,8 @@ export const orderGetAllDescription: INodeProperties[] = [
 			show: showOnlyForOrderGetAll,
 		},
 		options: [
-			{ name: 'All', value: '' },
 			{ name: 'Abandoned', value: 'abandoned' },
+			{ name: 'All', value: '' },
 			{ name: 'Canceled', value: 'canceled' },
 			{ name: 'Completed', value: 'completed' },
 			{ name: 'Pending', value: 'pending' },
