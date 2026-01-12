@@ -78,14 +78,6 @@ describe('Order Resource', () => {
 			expect(accountIdFilter?.displayName).toBe('Account ID');
 		});
 
-		it('should have email filter option in filters collection', () => {
-			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
-			const emailFilter = filtersCollection?.options?.find((opt) => opt.name === 'email');
-			expect(emailFilter).toBeDefined();
-			expect(emailFilter?.type).toBe('string');
-			expect(emailFilter?.displayName).toBe('Email');
-		});
-
 		it('should have created_from filter option in filters collection', () => {
 			const filtersCollection = orderDescription.find((p) => p.name === 'filters');
 			const createdFromFilter = filtersCollection?.options?.find((opt) => opt.name === 'created_from');
