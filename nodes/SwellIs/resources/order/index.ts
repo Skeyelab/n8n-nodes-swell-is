@@ -55,25 +55,32 @@ export const orderDescription: INodeProperties[] = [
 					output: {
 						postReceive: [
 							async function (items, response): Promise<INodeExecutionData[]> {
-								const returnAll = this.getNodeParameter('returnAll', 0) as boolean;
-
-								// When returnAll is false, pagination doesn't extract results automatically
-								// So we need to manually extract the results array from the paginated response
-								if (!returnAll) {
-									const body = response.body as { results?: unknown[] } | unknown;
-									if (body && typeof body === 'object' && 'results' in body) {
-										const results = (body as { results?: unknown[] }).results;
-										if (Array.isArray(results)) {
-											// Convert each result to an execution data item
-											return results.map((result) => ({
-												json: result as IDataObject,
-											}));
-										}
+								// Check if items already contain extracted results (from pagination)
+								// If items have data, pagination already extracted results
+								if (items.length > 0) {
+									// Check if first item looks like an order object (has id, number, etc.)
+									const firstItem = items[0].json as IDataObject;
+									if (firstItem && (firstItem.id || firstItem.number || firstItem.account_id)) {
+										// Items are already extracted orders
+										return items;
 									}
 								}
 
-								// When returnAll is true, pagination handles extraction automatically
-								return items;
+								// When pagination doesn't extract results automatically,
+								// manually extract the results array from the paginated response
+								const body = response.body as { results?: unknown[] } | unknown;
+								if (body && typeof body === 'object' && 'results' in body) {
+									const results = (body as { results?: unknown[] }).results;
+									if (Array.isArray(results)) {
+										// Convert each result to an execution data item
+										return results.map((result) => ({
+											json: result as IDataObject,
+										}));
+									}
+								}
+
+								// Fallback: return items as-is or empty array
+								return items.length > 0 ? items : [];
 							},
 						],
 					},
