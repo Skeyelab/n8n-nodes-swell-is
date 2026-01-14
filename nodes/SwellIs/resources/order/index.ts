@@ -55,8 +55,16 @@ export const orderDescription: INodeProperties[] = [
 					output: {
 						postReceive: [
 							async function (items, response): Promise<INodeExecutionData[]> {
-								// Check if items already contain extracted results (from pagination)
-								// If items have data, pagination already extracted results
+								const returnAll = this.getNodeParameter('returnAll', 0) as boolean;
+
+								// When returnAll is true, let pagination system handle everything
+								// Don't interfere with the rootProperty extraction
+								if (returnAll) {
+									return items;
+								}
+
+								// When returnAll is false, pagination might not extract results automatically
+								// Check if items already contain extracted results
 								if (items.length > 0) {
 									// Check if first item looks like an order object (has id, number, etc.)
 									const firstItem = items[0].json as IDataObject;
@@ -66,8 +74,7 @@ export const orderDescription: INodeProperties[] = [
 									}
 								}
 
-								// When pagination doesn't extract results automatically,
-								// manually extract the results array from the paginated response
+								// Manually extract the results array from the paginated response
 								const body = response.body as { results?: unknown[] } | unknown;
 								if (body && typeof body === 'object' && 'results' in body) {
 									const results = (body as { results?: unknown[] }).results;
