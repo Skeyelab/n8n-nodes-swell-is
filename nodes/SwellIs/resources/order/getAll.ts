@@ -68,7 +68,6 @@ export const orderGetAllDescription: INodeProperties[] = [
 			show: showOnlyForOrderGetAll,
 		},
 		default: '',
-		required: false,
 		description: 'Filter orders by customer/account ID. Leave empty to get all orders.',
 		routing: {
 			send: {
