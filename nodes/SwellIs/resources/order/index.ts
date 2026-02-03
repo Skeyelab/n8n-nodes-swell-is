@@ -38,7 +38,7 @@ export const orderDescription: INodeProperties[] = [
 				routing: {
 					request: {
 						method: 'GET',
-						url: '=/orders/{{$parameter.orderId}}',
+						url: '=/orders/{{$parameter.orderId}}?expand=shipments',
 					},
 				},
 			},
@@ -50,7 +50,7 @@ export const orderDescription: INodeProperties[] = [
 				routing: {
 					request: {
 						method: 'GET',
-						url: '/orders',
+						url: '/orders?expand=shipments',
 					},
 					output: {
 						postReceive: [
